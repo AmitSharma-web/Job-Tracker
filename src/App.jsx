@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import './App.css'
 import AddApplication from "./component/AddApplication";
 import Footer from "./component/Footer";
-
+// import Card from "./component/Card";
+import logo from "./assets/logo.jpg"
 function App() {
 
   const [applications, setApplications] = useState(() => {
@@ -13,10 +14,9 @@ function App() {
       return [];
     }
   });
-  
+
   const [toast, setToast] = useState(null);
-  
-  // 👇 NAYA STATE: Konsa tab select kiya hua hai? Default 'all' rakha hai.
+
   const [activeTab, setActiveTab] = useState("all");
 
   const showToast = (message, type) => {
@@ -45,11 +45,20 @@ function App() {
           {toast.message}
         </div>
       )}
-      
-      <h1>Job Application Tracker</h1>
-      <AddApplication setApplications={setApplications} applications={applications} showToast={showToast} />
 
-      {/* 👇 NAYE FILTER BUTTONS 👇 */}
+      {/* header */}
+      <div className="header-container">
+        <img src={logo} alt="logo" className="logo" />
+        <h1>Job Application Tracker</h1>
+      
+        <i className="fa-regular fa-address-card fa-jello" style={{color: "black"}}></i>
+      <i className="fa-solid fa-thumbs-up fa-float" style={{color: "black"}}></i>
+      <i className="fa-solid fa-skull fa-swing" style={{color: "black"}}    ></i>
+      </div>
+      
+      
+            <AddApplication setApplications={setApplications} applications={applications} showToast={showToast} />
+
       <div className="filter-tabs">
         <button className={`filter-btn ${activeTab === "all" ? "active" : ""}`} onClick={() => setActiveTab("all")}>All Jobs ({applications.length})</button>
         <button className={`filter-btn ${activeTab === "applied" ? "active" : ""}`} onClick={() => setActiveTab("applied")}>Applied</button>
@@ -58,18 +67,18 @@ function App() {
         <button className={`filter-btn ${activeTab === "rejected" ? "active" : ""}`} onClick={() => setActiveTab("rejected")}>Rejected</button>
       </div>
 
-      {/* 👇 5 COLUMNS KI JAGAH SIRF 1 GRID 👇 */}
-      <div  className="jobs-grid">
+      <div className="jobs-grid">
         {filteredJobs.length === 0 ? (
           <h3 className="no-jobs-msg">No jobs found in this category.</h3>
         ) : (
           filteredJobs.map((job) => (
-            <div key={job.id}  className="card">
+            <div key={job.id} className="card">
               <h3>Company: {job.companyName}</h3>
+              {/* <Card /> */}
               <p>Title: {job.jobTitle}</p>
               <p className="notes-text">Notes : {job.notes}</p>
               <p className="status-text">Status: {job.status}</p>
-              
+
               <select name="status" value={job.status} onChange={(e) => {
                 const updated = applications.map((j) => {
                   if (j.id === job.id) {

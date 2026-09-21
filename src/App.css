@@ -5,7 +5,37 @@ h1{
   font-weight: 600;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: rgb(0, 0, 0);
-  margin-left:13%;
+  /* margin-left:13%; */
+
+}
+.header-container {
+  display: flex;
+  align-items: center;       
+  /* justify-content: center;    */
+  gap: 15px;                
+  margin-bottom: 20px;      
+}
+.fa-regular {
+  font-size: 30px;
+  margin: 10px 10px 10px 50%;
+  height: auto;
+  
+}
+.fa-solid{
+   font-size: 30px;
+  /* margin: ; */
+  height: auto;
+  
+
+}
+
+.logo {
+  width: 60px; 
+  margin:10px 5px 5px 20px;              
+  height: auto;       
+  border-radius: 20px;
+  background-color: transparent; 
+   
 }
 .filter-tabs{
   /* border: 2px solid red; */
@@ -109,7 +139,7 @@ h1{
   
 
     .delete-btn{
-      padding: 10px 14px;
+      padding: 10px 5px;
       /* margin: 10px; */
       border-radius: 20px;
       outline: none;
